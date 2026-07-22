@@ -681,9 +681,11 @@ Operational requirements:
 Deliver:
 
 - Worker or monorepo setup;
+- Hono-based Worker routing;
 - pnpm;
 - strict TypeScript;
 - Wrangler-generated types;
+- Drizzle schema and D1 migration setup;
 - Biome;
 - Lefthook;
 - Vitest;
@@ -691,7 +693,9 @@ Deliver:
 - CI checks;
 - separate development and production bindings.
 
-Exit when local development, deployment, R2, D1, and CI all work.
+Use Hono for request routing, middleware, and route composition from the foundation onward. Use Drizzle as the D1 schema definition and migration tool so database changes are typed, reviewed, and reproducible.
+
+Exit when local development, deployment, Hono routing, Drizzle-managed D1 migrations, R2, D1, and CI all work.
 
 ### Phase 1 — Ingestion
 
@@ -812,9 +816,9 @@ Exit when the corpus is recoverable, failures are operationally manageable, and 
 
 ## 20. Codex work packages
 
-1. **Project foundation:** pnpm, Wrangler, strict TypeScript, generated types, Biome, Lefthook, Vitest, R2, and D1.
+1. **Project foundation:** pnpm, Wrangler, Hono routing, strict TypeScript, generated types, Biome, Lefthook, Vitest, R2, D1, and Drizzle migrations.
 2. **Corpus configuration:** typed list of Acts, canonical IDs, URLs, jurisdictions, and topics.
-3. **D1 schema:** migrations and typed access for documents, provisions, chunks, relationships, and runs.
+3. **D1 schema:** Drizzle schema, migrations, and typed access for documents, provisions, chunks, relationships, and runs.
 4. **Source downloader:** conditional requests, validation, buffering, hashing, upload, and errors.
 5. **Immutable versioning:** content-addressed R2 source versions and current-source records.
 6. **Parse dispatch:** queue parsing only when a source hash changes.
