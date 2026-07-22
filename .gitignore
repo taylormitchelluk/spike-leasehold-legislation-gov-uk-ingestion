@@ -13,6 +13,8 @@ dist/
 
 # deps
 node_modules/
+.pnpm-store/
+.turbo/
 .wrangler
 
 # env
