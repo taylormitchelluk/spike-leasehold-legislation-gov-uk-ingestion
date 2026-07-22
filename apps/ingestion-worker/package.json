@@ -1,0 +1,24 @@
+{
+  "name": "@leasehold/ingestion-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wrangler": "wrangler",
+    "dev": "wrangler dev",
+    "types": "WRANGLER_LOG_PATH=.wrangler/logs wrangler types --env-interface CloudflareBindings",
+    "typecheck": "pnpm run types && tsc --noEmit",
+    "test": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "format": "tsc --noEmit",
+    "ci": "pnpm run typecheck && pnpm run lint && pnpm run test",
+    "deploy": "pnpm run typecheck && wrangler deploy"
+  },
+  "dependencies": {
+    "hono": "4.12.31"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "wrangler": "4.112.0"
+  }
+}
