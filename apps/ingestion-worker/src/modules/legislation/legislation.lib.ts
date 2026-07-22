@@ -1,5 +1,7 @@
-import type { HonoRequest } from "hono";
-import type { LegislationItem, StoredDocumentMetadata } from "./legislation.types";
+import type {
+  LegislationItem,
+  StoredDocumentMetadata,
+} from "./legislation.types";
 import { LEGISLATION_ORIGIN } from "./legislation.types";
 
 export const createId = (item: LegislationItem): string =>
@@ -65,8 +67,7 @@ export const createStoredMetadata = (
   downloadedAt: string,
 ): StoredDocumentMetadata => {
   const sourceEtag = response.headers.get("etag") ?? undefined;
-  const sourceLastModified =
-    response.headers.get("last-modified") ?? undefined;
+  const sourceLastModified = response.headers.get("last-modified") ?? undefined;
 
   return {
     id: createId(item),

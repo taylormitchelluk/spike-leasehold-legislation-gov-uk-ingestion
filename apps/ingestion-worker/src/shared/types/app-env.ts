@@ -1,6 +1,6 @@
 export type AppEnv = {
   Bindings: CloudflareBindings;
   Variables: {
-    SYNC_TOKEN: string,
-  }
+    SYNC_TOKEN: string;
+  };
 };

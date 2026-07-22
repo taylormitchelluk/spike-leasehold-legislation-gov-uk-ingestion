@@ -1,5 +1,5 @@
-import { bearerAuth } from 'hono/bearer-auth'
-import type { AppEnv } from '#/shared/types/app-env';
+import { bearerAuth } from "hono/bearer-auth";
+import type { AppEnv } from "#/shared/types/app-env";
 
 export const bearerAuthMiddleware = bearerAuth<AppEnv>({
   verifyToken: (token, c) => token === c.env.SYNC_TOKEN,

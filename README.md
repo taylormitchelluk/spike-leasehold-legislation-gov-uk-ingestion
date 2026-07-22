@@ -67,10 +67,10 @@ pnpm --filter @leasehold/ingestion-worker dev
 pnpm typecheck
 pnpm lint
 pnpm test
-pnpm ci
+pnpm ready
 ```
 
-`lint`, `test`, and `format` are currently placeholders for the Phase 0 quality-tooling task and run TypeScript checks for now.
+`lint` runs Biome, `test` runs Vitest through Turbo, and `format` applies Biome formatting. `ready` runs all three.
 
 ## Deploy
 
