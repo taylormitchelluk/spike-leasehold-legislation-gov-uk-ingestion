@@ -1,0 +1,16 @@
+{
+  "name": "@leasehold/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "format": "tsc --noEmit",
+    "ci": "pnpm run typecheck && pnpm run lint && pnpm run test"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}
