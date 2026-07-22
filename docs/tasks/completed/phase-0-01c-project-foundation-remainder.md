@@ -6,7 +6,7 @@ Finish the remaining foundation cleanup after the Hono migration and monorepo re
 
 ## Context
 
-The PRD Phase 0 requires a clear, repeatable Cloudflare Workers foundation that can support later ingestion, parsing, embeddings, and retrieval workers. Hono routing is handled by Task 01, and the monorepo/Turbo/Just move is handled by Task 01b.
+The PRD Phase 0 requires a clear, repeatable Cloudflare Workers foundation that can support later ingestion, parsing, embeddings, and retrieval workers. Hono routing is handled by Task 01, and the monorepo/Turbo move is handled by Task 01b.
 
 This task captures the remaining foundation work that does not belong specifically to routing or repository reshaping.
 
@@ -26,7 +26,6 @@ This task captures the remaining foundation work that does not belong specifical
   - `format`;
   - `ci`;
   - `deploy`.
-- Ensure root `just` recipes and package scripts stay aligned.
 - Update `README.md` with the minimum local setup path.
 - Confirm the spike endpoints remain working after the foundation changes.
 
@@ -42,10 +41,6 @@ This task captures the remaining foundation work that does not belong specifical
 
 - `pnpm install --frozen-lockfile` succeeds from a clean checkout.
 - The project has a documented package/workspace shape.
-- Root scripts and `justfile` recipes cover Phase 0 developer workflows.
-- `just dev` starts the Worker locally.
-- `just typecheck` runs strict TypeScript checks.
-- `just ci` exists and runs the Phase 0 quality gates once later Phase 0 quality tasks are complete.
 - README setup instructions match the actual commands.
 
 ## Verification

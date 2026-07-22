@@ -1,17 +1,21 @@
-import type { Handler } from 'hono';
-import type { AppEnv } from '#/shared/types/app-env';
-import type { LegislationItem, SyncResult, SyncStatus } from "./legislation.types";
-import { LEASEHOLD_LEGISLATION } from "./legislation.types";
+import type { Handler } from "hono";
+import type { AppEnv } from "#/shared/types/app-env";
 import {
   createId,
-  createSourceUrl,
   createObjectKey,
+  createSourceUrl,
+  createStoredMetadata,
   getConditionalHeaders,
   isXmlResponse,
-  createStoredMetadata,
-  parseContentLength,
   mapInBatches,
+  parseContentLength,
 } from "./legislation.lib";
+import type {
+  LegislationItem,
+  SyncResult,
+  SyncStatus,
+} from "./legislation.types";
+import { LEASEHOLD_LEGISLATION } from "./legislation.types";
 
 // TODO: move to service
 const syncLegislationItem = async (
@@ -61,8 +65,7 @@ const syncLegislationItem = async (
     }
 
     if (!isXmlResponse(response)) {
-      const contentType =
-        response.headers.get("content-type") ?? "unknown";
+      const contentType = response.headers.get("content-type") ?? "unknown";
 
       return {
         id,
@@ -99,8 +102,7 @@ const syncLegislationItem = async (
     // console.log(all);
 
     const contentType =
-      response.headers.get("content-type") ??
-      "application/xml; charset=utf-8";
+      response.headers.get("content-type") ?? "application/xml; charset=utf-8";
 
     // legislation.gov.uk doesn't provide a content-length!
     const xml = await response.arrayBuffer();
@@ -133,12 +135,28 @@ const syncLegislationItem = async (
   }
 };
 
-const syncAllLegislation = async (env: CloudflareBindings): Promise<SyncResult[]> =>
-  mapInBatches(
-    LEASEHOLD_LEGISLATION,
-    2,
-    (item) => syncLegislationItem(env, item),
+const syncAllLegislation = async (
+  env: CloudflareBindings,
+): Promise<SyncResult[]> =>
+  mapInBatches(LEASEHOLD_LEGISLATION, 2, (item) =>
+    syncLegislationItem(env, item),
   );
+
+const countSyncResults = (
+  results: readonly SyncResult[],
+): Record<SyncStatus, number> => {
+  const counts: Record<SyncStatus, number> = {
+    downloaded: 0,
+    unchanged: 0,
+    failed: 0,
+  };
+
+  for (const result of results) {
+    counts[result.status] += 1;
+  }
+
+  return counts;
+};
 
 export const list: Handler<AppEnv> = async (c) => {
   // TODO: fetch from db,I want last updated etc.
@@ -153,59 +171,37 @@ export const list: Handler<AppEnv> = async (c) => {
       jurisdiction: item.jurisdiction,
     })),
   });
-}
+};
 
 export const sync: Handler<AppEnv> = async (c) => {
   const results = await syncAllLegislation(c.env);
 
-  const counts = results.reduce(
-    (accumulator, result) => ({
-      ...accumulator,
-      [result.status]: accumulator[result.status] + 1,
-    }),
-    {
-      downloaded: 0,
-      unchanged: 0,
-      failed: 0,
-    } satisfies Record<SyncStatus, number>,
-  );
-
   return c.json({
-    counts,
+    counts: countSyncResults(results),
     results,
   });
-}
+};
 
 export const syncById: Handler<AppEnv> = async (c) => {
-
   const item = LEASEHOLD_LEGISLATION.find((thing) => {
-    return createId(thing) == c.req.param('id');
-  })
+    return createId(thing) === c.req.param("id");
+  });
 
   if (!item) {
-    return c.json({
-      code: "NOT_FOUND",
-      resource: c.req.path,
-      message: `${c.req.param("id")} not found`,
-    }, 404);
+    return c.json(
+      {
+        code: "NOT_FOUND",
+        resource: c.req.path,
+        message: `${c.req.param("id")} not found`,
+      },
+      404,
+    );
   }
 
   const result = await syncLegislationItem(c.env, item);
 
-  const counts = [result].reduce(
-    (accumulator, result) => ({
-      ...accumulator,
-      [result.status]: accumulator[result.status] + 1,
-    }),
-    {
-      downloaded: 0,
-      unchanged: 0,
-      failed: 0,
-    } satisfies Record<SyncStatus, number>,
-  );
-
   return c.json({
-    counts,
+    counts: countSyncResults([result]),
     result,
   });
-}
+};

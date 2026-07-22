@@ -7,7 +7,7 @@
   "r2_buckets": [
     {
       "binding": "LEGISLATION_BUCKET",
-      "bucket_name": "spike-leasehold-legislation",
+      "bucket_name": "spike-leasehold-legislation"
     }
   ],
 

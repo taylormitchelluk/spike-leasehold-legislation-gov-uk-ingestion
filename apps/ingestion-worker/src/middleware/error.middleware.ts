@@ -17,4 +17,4 @@ export const errorHandler: ErrorHandler<AppEnv> = (error, c) => {
     },
     500,
   );
-}
+};

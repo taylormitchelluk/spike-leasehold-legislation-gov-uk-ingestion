@@ -8,17 +8,22 @@
     "types": "turbo run types",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "lint": "turbo run lint",
-    "format": "turbo run format",
-    "ci": "turbo run ci",
-    "deploy": "turbo run deploy --filter=@leasehold/ingestion-worker",
-    "wrangler": "pnpm --filter @leasehold/ingestion-worker wrangler"
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "ready": "pnpm typecheck && pnpm lint && pnpm test",
+    "prepare": "lefthook install",
+    "lefthook": "lefthook",
+    "deploy": "turbo run deploy --filter=@leasehold/ingestion-worker"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@11.15.1+sha512.81350b07e53c9538a02f1f2303b4290fa2d7be04e56e2a970c4cc4b417dc761de196edabd49d55c7dc9580db81007c44143e4e3d7e462b3000d23c255122d065",
   "devDependencies": {
+    "@biomejs/biome": "2.5.4",
+    "lefthook": "2.1.10",
     "turbo": "2.10.5",
     "typescript": "7.0.2",
     "wrangler": "4.112.0"

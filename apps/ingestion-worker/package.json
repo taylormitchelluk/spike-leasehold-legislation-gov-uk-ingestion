@@ -8,10 +8,11 @@
     "dev": "wrangler dev",
     "types": "WRANGLER_LOG_PATH=.wrangler/logs wrangler types --env-interface CloudflareBindings",
     "typecheck": "pnpm run types && tsc --noEmit",
-    "test": "tsc --noEmit",
-    "lint": "tsc --noEmit",
-    "format": "tsc --noEmit",
-    "ci": "pnpm run typecheck && pnpm run lint && pnpm run test",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "ready": "pnpm run typecheck && pnpm run lint && pnpm run test",
     "deploy": "pnpm run typecheck && wrangler deploy"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "typescript": "7.0.2",
+    "vitest": "4.1.10",
     "wrangler": "4.112.0"
   }
 }

@@ -32,7 +32,7 @@ The PRD requires Biome, Lefthook, and Vitest before later ingestion and parsing 
 - `pnpm format` or `pnpm format:check` is available and documented.
 - `pnpm test` runs Vitest.
 - Lefthook is configured and installable with pnpm.
-- `pnpm ci` includes typecheck, lint, and tests.
+- `pnpm run ci` includes typecheck, lint, and tests.
 - Existing Worker behaviour remains intact after moving routes behind Hono.
 
 ## Verification
@@ -42,7 +42,7 @@ Run:
 ```sh
 pnpm lint
 pnpm test
-pnpm ci
+pnpm run ci
 ```
 
 Optionally install hooks locally:

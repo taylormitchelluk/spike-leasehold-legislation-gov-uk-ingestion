@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsc --noEmit",
-    "lint": "tsc --noEmit",
-    "format": "tsc --noEmit",
-    "ci": "pnpm run typecheck && pnpm run lint && pnpm run test"
+    "test": "vitest run --passWithNoTests",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "ready": "pnpm run typecheck && pnpm run lint && pnpm run test"
   },
   "devDependencies": {
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
   }
 }
