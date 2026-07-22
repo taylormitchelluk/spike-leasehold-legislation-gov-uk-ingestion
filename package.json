@@ -2,23 +2,25 @@
   "name": "spike-leasehold-legislation-gov-uk-ingestion",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "wrangler": "wrangler",
-    "dev": "wrangler dev",
-    "types": "wrangler types --env-interface CloudflareBindings",
-    "typecheck": "wrangler types && tsc --noEmit",
-    "deploy": "pnpm run typecheck && wrangler deploy"
+    "dev": "turbo run dev --filter=@leasehold/ingestion-worker",
+    "types": "turbo run types",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "ci": "turbo run ci",
+    "deploy": "turbo run deploy --filter=@leasehold/ingestion-worker",
+    "wrangler": "pnpm --filter @leasehold/ingestion-worker wrangler"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@11.15.1+sha512.81350b07e53c9538a02f1f2303b4290fa2d7be04e56e2a970c4cc4b417dc761de196edabd49d55c7dc9580db81007c44143e4e3d7e462b3000d23c255122d065",
   "devDependencies": {
+    "turbo": "2.10.5",
     "typescript": "7.0.2",
     "wrangler": "4.112.0"
-  },
-  "dependencies": {
-    "hono": "4.12.31"
   }
 }
