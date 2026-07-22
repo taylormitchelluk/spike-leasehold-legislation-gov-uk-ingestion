@@ -19,7 +19,6 @@ This should be completed before the monorepo reshaping task so the route migrati
   - `POST /sync`.
 - Add a small Hono middleware or helper for shared JSON response behaviour if useful.
 - Keep existing `/legislation` and `/sync` spike endpoints working through Hono unless another Phase 0 task deliberately changes them.
-- Keep the scheduled handler working.
 - Preserve current authorization behaviour for `POST /sync`.
 - Preserve current response shapes unless a small Hono-specific adjustment is required.
 
@@ -32,7 +31,6 @@ This should be completed before the monorepo reshaping task so the route migrati
 5. Move `GET /legislation` into Hono.
 6. Move `POST /sync` into Hono and keep bearer-token authorization intact.
 7. Export the Hono app through the Worker `fetch` handler in `src/index.ts`.
-8. Keep the scheduled handler in `src/index.ts` and reuse the same sync function used by the Hono route.
 9. Run typecheck and local route smoke checks.
 
 ## Out of Scope
