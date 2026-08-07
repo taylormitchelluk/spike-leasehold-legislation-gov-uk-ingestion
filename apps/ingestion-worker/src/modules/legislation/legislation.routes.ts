@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { bearerAuthMiddleware } from "#/middleware/auth.middleware";
 import type { AppEnv } from "#/shared/types/app-env";
-import { list, sync, syncById } from "./legislation.handler";
+import { list, sync, syncById } from "./legislation.handlers";
 
 export const legislationRoutes = new Hono<AppEnv>();
 
