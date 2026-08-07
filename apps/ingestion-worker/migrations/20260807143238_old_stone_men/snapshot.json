@@ -1,0 +1,360 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "420e768d-ff95-4222-b5b3-f104ebaf8853",
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
+  "ddl": [
+    {
+      "name": "document_jurisdictions",
+      "entityType": "tables"
+    },
+    {
+      "name": "document_topics",
+      "entityType": "tables"
+    },
+    {
+      "name": "documents",
+      "entityType": "tables"
+    },
+    {
+      "name": "jurisdictions",
+      "entityType": "tables"
+    },
+    {
+      "name": "topics",
+      "entityType": "tables"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "document",
+      "entityType": "columns",
+      "table": "document_jurisdictions"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "jurisdiction",
+      "entityType": "columns",
+      "table": "document_jurisdictions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "document",
+      "entityType": "columns",
+      "table": "document_topics"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "topic",
+      "entityType": "columns",
+      "table": "document_topics"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "version",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "title",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "type",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "year",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source_url",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "etag",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sha256",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "status",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "last_modified",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "downloaded_at",
+      "entityType": "columns",
+      "table": "documents"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "jurisdictions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "jurisdictions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "label",
+      "entityType": "columns",
+      "table": "jurisdictions"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "topics"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "topics"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "label",
+      "entityType": "columns",
+      "table": "topics"
+    },
+    {
+      "columns": ["document"],
+      "tableTo": "documents",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_document_jurisdictions_document_documents_id_fk",
+      "entityType": "fks",
+      "table": "document_jurisdictions"
+    },
+    {
+      "columns": ["jurisdiction"],
+      "tableTo": "jurisdictions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_document_jurisdictions_jurisdiction_jurisdictions_id_fk",
+      "entityType": "fks",
+      "table": "document_jurisdictions"
+    },
+    {
+      "columns": ["document"],
+      "tableTo": "documents",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_document_topics_document_documents_id_fk",
+      "entityType": "fks",
+      "table": "document_topics"
+    },
+    {
+      "columns": ["topic"],
+      "tableTo": "topics",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_document_topics_topic_topics_id_fk",
+      "entityType": "fks",
+      "table": "document_topics"
+    },
+    {
+      "columns": ["document", "jurisdiction"],
+      "nameExplicit": false,
+      "name": "document_jurisdictions_pk",
+      "entityType": "pks",
+      "table": "document_jurisdictions"
+    },
+    {
+      "columns": ["document", "topic"],
+      "nameExplicit": false,
+      "name": "document_topics_pk",
+      "entityType": "pks",
+      "table": "document_topics"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "documents_pk",
+      "table": "documents",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "jurisdictions_pk",
+      "table": "jurisdictions",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "topics_pk",
+      "table": "topics",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "jurisdiction",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "document_jurisdiction_topic_slug_idx",
+      "entityType": "indexes",
+      "table": "document_jurisdictions"
+    },
+    {
+      "columns": [
+        {
+          "value": "topic",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "document_topics_topic_slug_idx",
+      "entityType": "indexes",
+      "table": "document_topics"
+    },
+    {
+      "columns": ["slug"],
+      "nameExplicit": false,
+      "name": "jurisdictions_slug_unique",
+      "entityType": "uniques",
+      "table": "jurisdictions"
+    },
+    {
+      "columns": ["slug"],
+      "nameExplicit": false,
+      "name": "topics_slug_unique",
+      "entityType": "uniques",
+      "table": "topics"
+    }
+  ],
+  "renames": []
+}

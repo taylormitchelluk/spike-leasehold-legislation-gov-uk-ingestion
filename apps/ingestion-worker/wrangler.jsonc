@@ -3,20 +3,26 @@
   "name": "spike-leasehold-legislation-gov-uk-ingestion",
   "main": "src/index.ts",
   "compatibility_date": "2026-07-21",
-
+  "observability": {
+    "enabled": true
+  },
   "r2_buckets": [
     {
       "binding": "LEGISLATION_BUCKET",
-      "bucket_name": "spike-leasehold-legislation"
+      "bucket_name": "leasehold-legislation"
     }
   ],
-
+  "d1_databases": [
+    {
+      "binding": "LEGISLATION_DB",
+      "database_name": "leasehold-legislation",
+      "database_id": "f5eda0a9-249d-443b-a654-d2f2c725cbc2",
+      "migrations_pattern": "migrations/*/migration.sql",
+      "migrations_dir": "migrations"
+    }
+  ]
   // "triggers": {
   //   // At 03:15 UTC every Sunday.
   //   "crons": ["15 3 * * 0"]
   // },
-
-  "observability": {
-    "enabled": true
-  }
 }

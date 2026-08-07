@@ -1,5 +1,5 @@
 {
-  "name": "@leasehold/ingestion-worker",
+  "name": "@apps/ingestion-worker",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -13,12 +13,17 @@
     "format": "biome format --write .",
     "format:check": "biome format .",
     "ready": "pnpm run typecheck && pnpm run lint && pnpm run test",
-    "deploy": "pnpm run typecheck && wrangler deploy"
+    "deploy": "pnpm run typecheck && wrangler deploy",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply leasehold-legislation --local"
   },
   "dependencies": {
-    "hono": "4.12.31"
+    "drizzle-orm": "1.0.0-rc.4",
+    "hono": "4.12.31",
+    "uuid": "14.0.1"
   },
   "devDependencies": {
+    "drizzle-kit": "1.0.0-rc.4",
     "typescript": "7.0.2",
     "vitest": "4.1.10",
     "wrangler": "4.112.0"
