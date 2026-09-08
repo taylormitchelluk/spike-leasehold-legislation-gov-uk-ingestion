@@ -46,7 +46,7 @@ jobs:
 
       - name: Apply production D1 migrations
         working-directory: apps/ingestion-worker
-        run: pnpm wrangler d1 migrations apply legislation-leasehold-database --remote
+        run: pnpm wrangler d1 migrations apply leasehold-legislation --remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

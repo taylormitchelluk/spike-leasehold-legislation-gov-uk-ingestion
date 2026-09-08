@@ -37,7 +37,6 @@ Generate cloudflare types
 pnpm types
 ```
 
-
 run dev
 
 ```
